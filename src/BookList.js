@@ -5,8 +5,7 @@ import SearchBar from "./SearchBar";
 
 class BookList extends Component {
   state = {
-    filteredBooks: this.props.books,
-    color: null
+    filteredBooks: this.props.books
   };
 
   filterBooks = query => {
@@ -18,9 +17,12 @@ class BookList extends Component {
   };
 
   render() {
-    const books = this.state.filteredBooks.map(book => (
-      <BookRow book={book} key={book.id} />
-    ));
+    const color = this.props.match.params.bookColor;
+    let books = this.state.filteredBooks;
+    if (color) {
+      books = books.filter(book => book.color === color);
+    }
+    books = books.map(book => <BookRow book={book} key={book.id} />);
     return (
       <div>
         <SearchBar onChange={this.filterBooks} />

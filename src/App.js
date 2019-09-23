@@ -8,7 +8,7 @@ import Loading from "./Loading";
 import AuthorsList from "./AuthorsList";
 import AuthorDetail from "./AuthorDetail";
 import BookList from "./BookList";
-import BookColorList from "./BookColorList";
+// import BookColorList from "./BookColorList";
 
 const instance = axios.create({
   baseURL: "https://the-index-api.herokuapp.com"
@@ -59,14 +59,7 @@ class App extends Component {
             )}
           />
           <Route
-            path="books/:bookColor"
-            render={props => (
-              <BookColorList {...props} books={this.state.books} />
-            )}
-          />
-          <Route
-            exact
-            path="/books/"
+            path="/books/:bookColor?"
             render={props => <BookList {...props} books={this.state.books} />}
           />
         </Switch>
